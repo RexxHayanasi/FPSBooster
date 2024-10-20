@@ -369,12 +369,31 @@ for i, v in pairs(Descendants) do
         WaitNumber = WaitNumber + StartNumber
     end
 end
-StarterGui:SetCore("SendNotification", {
-    Title = "https://whatsapp.com/channel/0029VapYyKEGufIpsd3Rja2C",
-    Text = "FPS Booster Loaded!",
-    Duration = math.huge,
-    Button1 = "Okay"
-})
+local link = "https://whatsapp.com/channel/0029VapYyKEGufIpsd3Rja2C"
+
+local function notify()
+    StarterGui:SetCore("SendNotification", {
+        Title = "Follow my WhatsApp Channel",
+        Text = "FPS Booster Loaded!",
+        Duration = math.huge,
+        Button1 = "Okay"
+    })
+
+    local userInputService = game:GetService("UserInputService")
+    userInputService.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            setclipboard(link)
+            StarterGui:SetCore("SendNotification", {
+                Title = "Link Copied!",
+                Text = "The link has been copied to the clipboard.",
+                Duration = 5,
+                Button1 = "Okay"
+            })
+        end
+    end)
+end
+
+notify()
 warn("FPS Booster Loaded!")
 --game.DescendantAdded:Connect(CheckIfBad)
 --[[game.DescendantAdded:Connect(function(value)
